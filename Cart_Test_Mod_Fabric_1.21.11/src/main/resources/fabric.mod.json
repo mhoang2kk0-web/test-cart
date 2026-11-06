@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "cart_test_mod",
+  "version": "${version}",
+  "name": "Cart Test Mod",
+  "description": "Client keybind demo for Minecraft 1.21.11 Fabric.",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "vn.example.carttest.CartTestClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.18.6",
+    "minecraft": "~1.21.11",
+    "fabric-api": "*",
+    "java": ">=21"
+  }
+}
