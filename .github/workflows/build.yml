@@ -18,14 +18,14 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Change directory and build
+      run: |
+        cd cartbomb
+        chmod +x gradlew
+        ./gradlew build
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: mod-jar
-        path: build/libs/*.jar
+        path: "cartbomb/build/libs/*.jar"
