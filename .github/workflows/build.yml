@@ -1,3 +1,4 @@
+
 name: Build Fabric Mod
 
 on:
@@ -9,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout source
         uses: actions/checkout@v4
 
       - name: Setup Java 21
@@ -23,10 +24,11 @@ jobs:
         with:
           gradle-version: '8.14.3'
 
-      - name: Build
-        run: cd Cart_Test_Mod_Fabric_1.21.11 && gradle build
+      - name: Build Fabric Mod
+        run: gradle build
+        working-directory: ./Cart_Test_Mod_Fabric_1.21.11
 
-      - name: Upload mod
+      - name: Upload Mod JAR
         uses: actions/upload-artifact@v4
         with:
           name: cart-test-mod
