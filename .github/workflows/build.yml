@@ -24,10 +24,11 @@ jobs:
           gradle-version: '8.14.3'
 
       - name: Build
-        run: gradle build
+        run: cd Cart_Test_Mod_Fabric_1.21.11 && gradle build
 
       - name: Upload mod
         uses: actions/upload-artifact@v4
         with:
           name: cart-test-mod
-          path: build/libs/*.jar
+          path: Cart_Test_Mod_Fabric_1.21.11/build/libs/*.jar
+          if-no-files-found: error
