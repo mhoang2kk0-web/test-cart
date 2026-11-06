@@ -1,8 +1,8 @@
-
 name: Build Fabric Mod
 
 on:
   push:
+    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
@@ -10,27 +10,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: Setup Java 21
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '9.5.0'
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
 
-      - name: Build Fabric Mod
-        run: gradle build
-        working-directory: ./Cart_Test_Mod_Fabric_1.21.11
+    - name: Build with Gradle
+      run: ./gradlew build
 
-      - name: Upload Mod JAR
-        uses: actions/upload-artifact@v4
-        with:
-          name: cart-test-mod
-          path: Cart_Test_Mod_Fabric_1.21.11/build/libs/*.jar
-          if-no-files-found: error
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: mod-jar
+        path: build/libs/*.jar
